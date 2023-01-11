@@ -1,0 +1,61 @@
+<% layout('./layouts/boilerplate') %>
+    <div class="row">
+        <h1 class="text-center"> New Place </h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/places" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-control" type="text" id="name" name="place[name]" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">location</label>
+                    <input class="form-control" type="text" id="location" name="place[location]" required>
+                </div>
+
+                <label for="file">Add Photos</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="image" name="image" id="" multiple>
+                </div>
+                <!--                <div class="mb-3">
+                    <label class="form-label" for="image">image url</label>
+                    <input class="form-control" type="text" id="image" name="place[image]" required>
+                </div> -->
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">description</label>
+                    <textarea class="form-control" type="text" id="description" name="place[description]"
+                        required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="form-label" for="price"> Cost </label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" id="price" placeholder="0" aria-label="Price"
+                            aria-describedby="price-label" name="place[price]">
+                    </div>
+                </div>
+                <div class=" mb-3">
+                    What kind of local haunt do you want to add?
+                    <div class="mb-1">
+                        <input type="radio" id="roastery" name="place[category]" value="roastery" checked>
+                        <label for="roastery">roastery</label>
+                    </div>
+
+                    <div class="mb-1">
+                        <input type="radio" id="brewery" name="place[category]" value="brewery">
+                        <label for="brewery">brewery</label>
+                    </div>
+
+                    <div class="mb-1">
+                        <input type="radio" id="eatery" name="place[category]" value="eatery">
+                        <label for="eatery">eatery</label>
+                    </div>
+                </div>
+                <button class="btn btn-success">Submit</button>
+            </form>
+            <form action="places">
+                <button class="btn btn-info"> Back to all places</button>
+            </form>
+        </div>
+    </div>

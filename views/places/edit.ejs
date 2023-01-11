@@ -1,0 +1,79 @@
+<% layout('./layouts/boilerplate') %>
+
+    <a href="/places/<%= place._id %>"> Back to <%= place.name %></a>
+
+
+    <div class="row">
+        <h1 class="text-center"> Edit <%= place.name %>
+        </h1>
+        <div class="col-md-6 offset-md-3">
+
+            <form action="/places/<%= place._id %>?_method=PUT" method="POST" novalidate class="validated-form"
+                enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-control" type="text" id="name" name="place[name]" value="<%= place.name %> "
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">location</label>
+                    <input class="form-control" type="text" id="location" name="place[location]"
+                        value="<%= place.location %> " required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="image">Add images</label>
+                    <input type="file" name="image" id="image" multiple>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">description</label>
+                    <textarea class="form-control" type="text" id="description" name="place[description]"
+                        required><%= place.description %></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="form-label" for="price"> Cost </label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" id="price" placeholder="0" aria-label="Price"
+                            aria-describedby="price-label" name="place[price]" value="<%= place.price %> ">
+                    </div>
+                </div>
+                <div class=" mb-3">
+                    Still the same type of place?
+                    <div class="mb-1">
+                        <input type="radio" id="roastery" name="place[category]" value="roastery" checked>
+                        <label for="roastery">roastery</label>
+                    </div>
+
+                    <div class="mb-1">
+                        <input type="radio" id="brewery" name="place[category]" value="brewery">
+                        <label for="brewery">brewery</label>
+                    </div>
+
+                    <div class="mb-1">
+                        <input type="radio" id="eatery" name="place[category]" value="eatery">
+                        <label for="eatery">eatery</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <% place.images.forEach(function(img, i){ %>
+                        <img src="<%=img.url%> " class="img-thumbnail" alt="...">
+                        <div class="form-check-inline">
+                            <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                        </div>
+                        <label for="image-<%=i%>">Delete?</label>
+                        <% }) %>
+                </div>
+
+                <button class="btn btn-success">Submit</button>
+            </form>
+
+
+            <!--     This is breaking things and I can't seem to fix it quickly, so I will fix it later so I can move on.
+            <form action="places">
+                <button class="btn btn-info"> Back to all places</button>
+            </form> -->
+        </div>
+    </div>
